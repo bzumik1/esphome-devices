@@ -62,26 +62,71 @@ wifi:
 
 captive_portal:
 
+# Relays are connected trough I2C
+i2c:
+  sda: 4
+  scl: 15
+  scan: True
+
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x24
+    pcf8575: False
+
 switch:
   - platform: gpio
-    name: "light1"
-    pin: 2
-    inverted: false
+    name: "Relay 1"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 0
+      mode:
+        output: true
+      inverted: false
 
   - platform: gpio
-    name: "light2"
-    pin: 15
-    inverted: false
+    name: "Relay 2"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 1
+      mode:
+        output: true
+      inverted: false
 
   - platform: gpio
-    name: "light3"
-    pin: 5
-    inverted: false
+    name: "Relay 3"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 2
+      mode:
+        output: true
+      inverted: false
 
   - platform: gpio
-    name: "light4"
-    pin: 4
-    inverted: false
+    name: "Relay 4"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 3
+      mode:
+        output: true
+      inverted: false
+
+  - platform: gpio
+    name: "Relay 5"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 4
+      mode:
+        output: true
+      inverted: false
+
+  - platform: gpio
+    name: "Relay 6"
+    pin:
+      pcf8574: pcf8574_hub
+      number: 5
+      mode:
+        output: true
+      inverted: false
 
 binary_sensor:
   - platform: gpio
